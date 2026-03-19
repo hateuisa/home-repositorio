@@ -1,0 +1,353 @@
+/* Limpieza total */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+/* Barra de arriba blanca y limpia */
+.navegacion {
+    display: flex;
+    justify-content: flex-end; /* Como el logo ahora "flota", empujamos a la usuaria a la derecha */
+    align-items: center;
+    padding: 0 5%; /* Quitamos el relleno vertical para que la medida sea exacta */
+    background: white;
+    height: 70px;
+    position: relative; /* Súper importante para que el logo sepa dónde anclarse */
+    z-index: 10; /* Evita que el logo se esconda detrás del fondo lila */
+}
+
+/* El logo a caballo entre el blanco y el lila */
+.logo {
+    height: 85px; /* Lo hacemos un pelín más grande para que el efecto destaque más */
+    width: auto;
+    position: absolute; /* Lo sacamos de la fila normal */
+    top: 70px; /* Lo bajamos exactamente hasta el borde de la cabecera blanca */
+    transform: translateY(-48%); /* El truco: lo sube exactamente la mitad de su propio tamaño */
+    left: 5%; /* Lo mantiene alineado con el margen izquierdo */
+}
+
+.usuario {
+    height: 80px; 
+    width: auto;  
+    cursor: pointer; 
+}
+
+/* El fondo morado que querías */
+.contenedor-principal {
+    background-color: #e2a9f1;
+    min-height: 400px;
+    padding: 40px 0;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.titulo {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    text-align: left; /* Aquí está la magia para tirarlo a la izquierda */
+    padding-left: 5%; /* Le damos el mismo margen que tiene la barra de arriba para que quede simétrico */
+}
+
+/* ELIMINA todo el bloque que decía ".buscador input { ... }" */
+
+/* --- NUEVOS ESTILOS PARA LAS TARJETAS --- */
+
+.tarjeta {
+    /* Le hemos quitado el background: white, el padding y el border-radius */
+    width: 250px;
+    text-align: left; /* Para que el texto quede alineado a la izquierda como en tu diseño original */
+}
+
+.tarjeta-titulo-blanco {
+    margin-bottom: 15px;
+    color: white; /* Texto blanco para que destaque en el morado */
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.enlace-imagen {
+    display: block; /* Asegura que todo el enlace sea clicable */
+}
+
+.imagen-boton {
+    width: 100%;
+    height: 280px; /* Las hacemos un poco más altas para que luzcan más */
+    object-fit: cover;
+    border-radius: 15px; /* El borde redondeado se lo damos directamente a la foto */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Una sombra sutil para la foto */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Prepara la animación */
+}
+
+/* El efecto al pasar el ratón por encima (Hover) */
+.imagen-boton:hover {
+    transform: scale(1.05) translateY(-5px); /* Se hace un 5% más grande y sube un poquito */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3); /* La sombra se hace más grande */
+    cursor: pointer;
+}
+
+/* La rejilla que centra las tarjetas (¡Esto es lo que faltaba!) */
+.contenedor-tarjetas {
+    display: flex;
+    justify-content: center; /* Esta es la magia que las pone en el centro */
+    gap: 30px; /* Separación entre tarjetas por si tienes varias */
+    flex-wrap: wrap;
+    padding: 0 20px; /* Un margen de seguridad a los lados */
+}
+
+/* --- ESTILOS PARA LA PÁGINA DE BLOQUES --- */
+
+/* Ajustamos el padding del contenedor principal para esta página */
+.contenedor-principal {
+    padding: 40px 10%; /* Le damos espacio a los lados */
+}
+
+/* 1. Menú superior de píldoras */
+.nav-superior {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.pildora {
+    background: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.pildora:hover {
+    transform: translateY(-3px);
+}
+
+.pildora img { width: 20px; } /* Tamaño de los iconitos */
+
+
+/* 2. Layout de dos columnas */
+.contenido-dos-columnas {
+    display: flex;
+    gap: 80px; /* Separación entre el menú izquierdo y la foto */
+    align-items: center;
+}
+
+
+/* 3. Columna izquierda (Menú lateral) */
+.menu-lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 250px;
+    flex-shrink: 0; /* Evita que los botones se aplasten si la pantalla es más pequeña */
+}
+
+.btn-lateral {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.btn-lateral:hover {
+    transform: scale(1.05); /* Efecto de crecer al pasar el ratón */
+}
+
+.btn-lateral img { width: 25px; }
+
+
+/* 4. Columna Derecha (Foto Gigante y Tarjeta Cristal) */
+.area-visual {
+    flex-grow: 1; /* Ocupa todo el espacio restante a la derecha */
+}
+
+.bloque-contratos {
+    position: relative;
+    width: 100%;
+    height: 450px; /* Altura de la foto negra */
+    border-radius: 40px;
+    background-color: #000; /* Fondo negro por si falla la imagen */
+    display: flex;
+    align-items: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.imagen-fondo-contrato {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 40px;
+    opacity: 0.7; /* Oscurecemos un poquito la foto para que el texto blanco resalte más */
+}
+
+.titulo-superpuesto {
+    position: absolute;
+    right: 50px;
+    color: white;
+    font-size: 3.8rem;
+    text-align: right;
+    line-height: 1;
+    z-index: 2; /* Nos aseguramos de que esté encima de la foto */
+    font-family: serif; /* En tu diseño parece una letra con remates (serif) */
+}
+
+
+/* 5. La Tarjeta de Cristal que sale por la izquierda */
+.tarjeta-cristal {
+    position: absolute;
+    left: -100px; /* Aquí está la magia: la sacamos 100px por la izquierda de la foto */
+    background: rgba(245, 235, 255, 0.9); /* Blanco con un tonito muy suave de lila y translúcido */
+    backdrop-filter: blur(50px); /* Efecto difuminado del cristal */
+    padding: 40px;
+    border-radius: 30px;
+    width: 340px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    z-index: 5; /* Por encima de todo */
+    /* --- AÑADE ESTO PARA OCULTARLA --- */
+    opacity: 0; /* Totalmente transparente */
+    visibility: hidden; /* Que no se pueda hacer clic si no se ve */
+    transform: translateX(-20px); /* La movemos un pelín a la izquierda para el efecto de entrada */
+    transition: all 0.3s ease; /* Velocidad de la animación */
+}
+
+/* Aparece al pasar el ratón por los botones O por la tarjeta */
+.contenido-dos-columnas:has(.btn-lateral:hover) .tarjeta-cristal,
+.tarjeta-cristal:hover {
+    opacity: 1; /* La hace visible */
+    visibility: visible;
+    transform: translateX(0); /* La desliza a su sitio original suavemente */
+}
+
+.tarjeta-cristal h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.tarjeta-cristal p {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.boton-acceder {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #b565d6; /* El borde moradito */
+    border-radius: 30px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.boton-acceder:hover {
+    background-color: #b565d6;
+    color: white;
+}
+
+
+/* 6. Botón de ayuda flotante (abajo a la derecha) */
+.boton-dudas {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.boton-dudas:hover {
+    transform: scale(1.1);
+}
+
+/* =========================================
+   ESTILOS PARA EL ACORDEÓN (TIPO COCA-COLA)
+   ========================================= */
+
+.acordeon-item {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+/* Le quitamos la línea al último para que la tarjeta quede limpia por abajo */
+.acordeon-item:last-of-type {
+    border-bottom: none;
+}
+
+.acordeon-titulo {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffffff; /* Morado oscuro corporativo */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5px;
+    list-style: none; /* Oculta la flecha por defecto del navegador */
+}
+
+/* Ocultar la flecha nativa en navegadores como Safari o Chrome antiguos */
+.acordeon-titulo::-webkit-details-marker {
+    display: none;
+}
+
+/* Nuestra flecha personalizada a la derecha */
+.acordeon-titulo::after {
+    content: '▼';
+    font-size: 0.8rem;
+    color: #9c27b0; /* Morado un poco más vibrante */
+    transition: transform 0.3s ease;
+}
+
+/* Efecto hover: cuando pasas el ratón por el título */
+.acordeon-titulo:hover {
+    color: #9c27b0;
+    background-color: #fbfbfb;
+    border-radius: 5px;
+}
+
+/* Cuando el desplegable está abierto (haces clic) */
+details[open] .acordeon-titulo::after {
+    transform: rotate(180deg); /* Gira la flecha hacia arriba */
+    color: #4a148c;
+}
+
+/* El contenido del texto que se despliega */
+.acordeon-texto {
+    padding: 15px 15px 15px 20px;
+    color: #555;
+    line-height: 1.6;
+    font-size: 1rem;
+    border-left: 3px solid #9c27b0; /* Barrita lateral morada muy elegante */
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background-color: #fafafa; /* Fondo gris súper clarito para diferenciarlo */
+    border-radius: 0 8px 8px 0;
+}
